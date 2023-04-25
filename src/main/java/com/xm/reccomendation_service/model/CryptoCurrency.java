@@ -1,5 +1,6 @@
 package com.xm.reccomendation_service.model;
 
+import com.xm.reccomendation_service.dto.CryptoCurrencyDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "crypto_currencies")
@@ -27,11 +30,21 @@ public class CryptoCurrency {
     Integer id;
 
     @Column
-    LocalDate timestamp;
+    LocalDateTime timestamp;
 
     @Column
     String symbol;
 
     @Column
     BigDecimal price;
+
+    public CryptoCurrency(CryptoCurrencyDto currencyDto) {
+        this(
+                null,
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(currencyDto.getTimestamp()),
+                        TimeZone.getDefault().toZoneId()),
+                currencyDto.getSymbol(),
+                currencyDto.getPrice()
+        );
+    }
 }
