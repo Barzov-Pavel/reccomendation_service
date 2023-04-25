@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
-class ReadCsvFileServiceUnitTest {
+class CsvFileReaderServiceUnitTest {
 
-    private static ReadCsvFileService readCsvFileService;
+    private static CsvFileReaderService csvFileReaderService;
 
     @BeforeAll
     static void init() {
-        readCsvFileService = new ReadCsvFileService();
+        csvFileReaderService = new CsvFileReaderService();
     }
 
     @Test
@@ -29,7 +29,7 @@ class ReadCsvFileServiceUnitTest {
         String path = "src/test/resources/test-data.csv";
         CryptoCurrencyDto expected = new CryptoCurrencyDto(1641506400000L, "BTC", BigDecimal.valueOf(43120.63));
         // When
-        List<CryptoCurrencyDto> result = readCsvFileService.read(path);
+        List<CryptoCurrencyDto> result = csvFileReaderService.read(path);
         // Then
         assertAll(
                 () -> assertEquals(10, result.size()),
@@ -42,7 +42,7 @@ class ReadCsvFileServiceUnitTest {
         // Given
         String path = "src/test/resources/absent-test-data.csv";
         // When
-        List<CryptoCurrencyDto> result = readCsvFileService.read(path);
+        List<CryptoCurrencyDto> result = csvFileReaderService.read(path);
         // Then
         assertEquals(0, result.size());
     }

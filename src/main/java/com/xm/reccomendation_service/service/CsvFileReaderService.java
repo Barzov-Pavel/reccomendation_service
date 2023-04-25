@@ -9,9 +9,9 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.List;
 
-public class ReadCsvFileService implements Readable {
+public class CsvFileReaderService implements Readable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReadCsvFileService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CsvFileReaderService.class);
 
     @Override
     public List<CryptoCurrencyDto> read(String dataPath) {
