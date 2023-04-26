@@ -26,6 +26,6 @@ public class CryptoCurrencyController {
                                                                          @RequestParam Integer month) {
 
         return new ResponseEntity<>(cryptoCurrencyService
-                .getCryptoCurrencyStats(cryptoCurrencyName, year, month), HttpStatus.OK);
+                .getCryptoCurrencyStats(cryptoCurrencyName.toUpperCase(), year, month), HttpStatus.OK);
     }
 }

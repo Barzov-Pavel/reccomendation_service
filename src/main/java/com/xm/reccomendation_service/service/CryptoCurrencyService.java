@@ -18,6 +18,8 @@ public class CryptoCurrencyService implements CryptoCurrency {
 
     private static final int FIRST_DAY_OF_MONTH = 1;
     private static final int ZERO_TIME = 0;
+    private static final int LAST_HOUR = 23;
+    private static final int LAST_MINUTE_SECOND = 59;
 
     private final CryptoCurrencyRepository repository;
 
@@ -27,8 +29,11 @@ public class CryptoCurrencyService implements CryptoCurrency {
 
     @Override
     public CryptoCurrencyStatsDto getCryptoCurrencyStats(String cryptoCurrencyName, Integer year, Integer month) {
-        LocalDateTime startDate = LocalDateTime.of(year, month, FIRST_DAY_OF_MONTH, ZERO_TIME, ZERO_TIME, ZERO_TIME);
-        LocalDateTime endDate = startDate.with(lastDayOfMonth());
+        LocalDateTime startDate = LocalDateTime
+                .of(year, month, FIRST_DAY_OF_MONTH, ZERO_TIME, ZERO_TIME, ZERO_TIME);
+        LocalDateTime endDate = startDate.with(lastDayOfMonth()).withHour(LAST_HOUR)
+                .withMinute(LAST_MINUTE_SECOND)
+                .withSecond(LAST_MINUTE_SECOND);
         List<com.xm.reccomendation_service.model.CryptoCurrency> cryptoCurrencies = repository
                 .findAllBySymbolAndTimestampBetween(cryptoCurrencyName, startDate, endDate);
         BigDecimal minValue = CryptoCurrencyUtils.getMinValue(cryptoCurrencies);
