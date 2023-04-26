@@ -1,6 +1,7 @@
 package com.xm.reccomendation_service.controller;
 
 import com.xm.reccomendation_service.dto.CryptoCurrencyStatsDto;
+import com.xm.reccomendation_service.dto.NormalizedRangeCryptoCurrencyDto;
 import com.xm.reccomendation_service.service.CryptoCurrency;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.getNormalizedRangeCryptoCurrencyDtos;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -43,5 +46,19 @@ class CryptoCurrencyControllerUnitTest {
         verifyNoMoreInteractions(cryptoCurrencyService);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(dto, response.getBody());
+    }
+
+    @Test
+    void should_get_crypto_currencies_sorted_by_normalize_range() {
+        // Given
+        List<NormalizedRangeCryptoCurrencyDto> currencyDtos = getNormalizedRangeCryptoCurrencyDtos();
+        when(cryptoCurrencyService.getCryptoCurrenciesSortedByNormalizedRange()).thenReturn(currencyDtos);
+        // Then
+        ResponseEntity<List<NormalizedRangeCryptoCurrencyDto>> response = controller.getCryptoCurrenciesSortedByNormalizedRange();
+        // When
+        verify(cryptoCurrencyService, times(1)).getCryptoCurrenciesSortedByNormalizedRange();
+        verifyNoMoreInteractions(cryptoCurrencyService);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(currencyDtos, response.getBody());
     }
 }

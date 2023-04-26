@@ -1,6 +1,7 @@
 package com.xm.reccomendation_service.controller;
 
 import com.xm.reccomendation_service.dto.CryptoCurrencyStatsDto;
+import com.xm.reccomendation_service.dto.NormalizedRangeCryptoCurrencyDto;
 import com.xm.reccomendation_service.service.CryptoCurrency;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/crypto-currencies")
@@ -27,5 +30,11 @@ public class CryptoCurrencyController {
 
         return new ResponseEntity<>(cryptoCurrencyService
                 .getCryptoCurrencyStats(cryptoCurrencyName.toUpperCase(), year, month), HttpStatus.OK);
+    }
+
+    @GetMapping("/sorted-by-normalized-range")
+    public ResponseEntity<List<NormalizedRangeCryptoCurrencyDto>> getCryptoCurrenciesSortedByNormalizedRange() {
+        return new ResponseEntity<>(cryptoCurrencyService
+                .getCryptoCurrenciesSortedByNormalizedRange(), HttpStatus.OK);
     }
 }
