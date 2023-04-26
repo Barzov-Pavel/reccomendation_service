@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/crypto-currencies")
@@ -36,5 +38,13 @@ public class CryptoCurrencyController {
     public ResponseEntity<List<NormalizedRangeCryptoCurrencyDto>> getCryptoCurrenciesSortedByNormalizedRange() {
         return new ResponseEntity<>(cryptoCurrencyService
                 .getCryptoCurrenciesSortedByNormalizedRange(), HttpStatus.OK);
+    }
+
+    @GetMapping("/highest-normalized-range")
+    public ResponseEntity<NormalizedRangeCryptoCurrencyDto> getCryptoCurrencyWithHighestNormalizedRange(@RequestParam LocalDate date) {
+        Optional<NormalizedRangeCryptoCurrencyDto> highestCryptoCurrency = cryptoCurrencyService
+                .getCryptoCurrencyWithHighestNormalizedRange(date);
+        return highestCryptoCurrency.map(currency -> new ResponseEntity<>(currency, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 }
