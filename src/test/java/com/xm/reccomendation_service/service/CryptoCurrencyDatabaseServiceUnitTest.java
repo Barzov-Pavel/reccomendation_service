@@ -13,6 +13,7 @@ import java.util.List;
 
 import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.getCryptoCurrencyDtos;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -28,7 +29,7 @@ class CryptoCurrencyDatabaseServiceUnitTest {
     CryptoCurrencyDatabaseService service;
 
     @Test
-    void should_lunch_save_method_from_repository() {
+    void should_lunch_save_all_method_from_repository() {
         // Given
         List<CryptoCurrencyDto> dtos = getCryptoCurrencyDtos();
         when(repository.saveAll(anyList())).thenReturn(Collections.emptyList());
@@ -36,6 +37,17 @@ class CryptoCurrencyDatabaseServiceUnitTest {
         service.saveAll(dtos);
         // Then
         verify(repository, times(1)).saveAll(anyList());
+        verifyNoMoreInteractions(repository);
+    }
+
+    @Test
+    void should_lunch_delete_all_method_from_repository() {
+        // Given
+        doNothing().when(repository).deleteAll();
+        // When
+        service.deleteAll();
+        // Then
+        verify(repository, times(1)).deleteAll();
         verifyNoMoreInteractions(repository);
     }
 }

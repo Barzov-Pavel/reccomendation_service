@@ -2,12 +2,13 @@ package com.xm.reccomendation_service.service;
 
 
 import com.xm.reccomendation_service.dto.CryptoCurrencyDto;
-import com.xm.reccomendation_service.model.CryptoCurrency;
 import com.xm.reccomendation_service.repository.CryptoCurrencyRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class CryptoCurrencyDatabaseService implements Savable {
+@Service
+public class CryptoCurrencyDatabaseService implements CryptoCurrency {
 
     private final CryptoCurrencyRepository repository;
 
@@ -15,11 +16,18 @@ public class CryptoCurrencyDatabaseService implements Savable {
         this.repository = repository;
     }
 
+    @Override
     public <T> void saveAll(List<T> dtoObjects) {
-        List<CryptoCurrency> cryptoCurrencies = dtoObjects
+        List<com.xm.reccomendation_service.model.CryptoCurrency> cryptoCurrencies = dtoObjects
                 .stream()
-                .map(dtoObject -> new CryptoCurrency((CryptoCurrencyDto) dtoObject))
+                .map(dtoObject -> new com.xm.reccomendation_service.model.CryptoCurrency((CryptoCurrencyDto) dtoObject))
                 .toList();
         repository.saveAll(cryptoCurrencies);
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
 }
