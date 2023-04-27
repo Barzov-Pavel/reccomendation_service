@@ -13,10 +13,11 @@ public class CryptoCurrencyTestUtils {
     public static final String ETH_SYMBOL = "ETH";
     public static final String LTC_SYMBOL = "LTC";
 
-    public static final BigDecimal MIN_PRICE_VALUE = BigDecimal.valueOf(2.5);
-    public static final BigDecimal MAX_PRICE_VALUE = BigDecimal.valueOf(10.5);
-    public static final BigDecimal OLDEST_PRICE_VALUE = BigDecimal.valueOf(5.5);
-    public static final BigDecimal NEWEST_PRICE_VALUE = BigDecimal.valueOf(3.5);
+    public static final BigDecimal MIN_PRICE_VALUE = BigDecimal.valueOf(2.50);
+    public static final BigDecimal MAX_PRICE_VALUE = BigDecimal.valueOf(10.50);
+    public static final BigDecimal OLDEST_PRICE_VALUE = BigDecimal.valueOf(5.50);
+    public static final BigDecimal NEWEST_PRICE_VALUE = BigDecimal.valueOf(3.50);
+    public static final BigDecimal PRICE_VALUE = BigDecimal.valueOf(4.80);
 
     public static List<CryptoCurrencyDto> getCryptoCurrencyDtos() {
         return List.of(
@@ -36,19 +37,21 @@ public class CryptoCurrencyTestUtils {
 
     public static List<CryptoCurrency> getCryptoCurrencies() {
         return List.of(
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 1, 0, 0, 0), BTC_SYMBOL, OLDEST_PRICE_VALUE),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 2, 0, 0, 0), BTC_SYMBOL, MAX_PRICE_VALUE),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 30, 23, 59, 59), BTC_SYMBOL, MIN_PRICE_VALUE),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 31, 23, 59, 59), BTC_SYMBOL, NEWEST_PRICE_VALUE)
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 1, 0, 0, 0), BTC_SYMBOL, OLDEST_PRICE_VALUE),
+                new CryptoCurrency(2, LocalDateTime.of(2022, 3, 2, 0, 0, 0), BTC_SYMBOL, MAX_PRICE_VALUE),
+                new CryptoCurrency(3, LocalDateTime.of(2022, 3, 30, 23, 59, 59), BTC_SYMBOL, MIN_PRICE_VALUE),
+                new CryptoCurrency(4, LocalDateTime.of(2022, 3, 31, 23, 59, 59), BTC_SYMBOL, NEWEST_PRICE_VALUE),
+                new CryptoCurrency(5, LocalDateTime.of(2022, 4, 1, 23, 59, 59), LTC_SYMBOL, PRICE_VALUE),
+                new CryptoCurrency(6, LocalDateTime.of(2022, 4, 1, 23, 59, 59), ETH_SYMBOL, PRICE_VALUE)
         );
     }
 
     public static List<CryptoCurrency> getCryptoCurrencies(String symbol, BigDecimal price) {
         return List.of(
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 1, 0, 0, 0), symbol, price),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 2, 0, 0, 0), symbol, price.add(BigDecimal.valueOf(100))),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 30, 23, 59, 59), symbol, price.add(BigDecimal.valueOf(500))),
-                new CryptoCurrency(1, LocalDateTime.of(2022, 1, 31, 23, 59, 59), symbol, price.add(BigDecimal.valueOf(300)))
-                );
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 1, 0, 0, 0), symbol, price),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 2, 0, 0, 0), symbol, price.add(BigDecimal.valueOf(100))),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 30, 23, 59, 59), symbol, price.add(BigDecimal.valueOf(500))),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 31, 23, 59, 59), symbol, price.add(BigDecimal.valueOf(300)))
+        );
     }
 }
