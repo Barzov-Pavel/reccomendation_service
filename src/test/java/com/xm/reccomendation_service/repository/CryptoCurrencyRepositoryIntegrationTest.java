@@ -17,7 +17,7 @@ import java.util.List;
 import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.BTC_SYMBOL;
 import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.ETH_SYMBOL;
 import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.LTC_SYMBOL;
-import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.getCryptoCurrencies;
+import static com.xm.reccomendation_service.CryptoCurrencyTestUtils.getCryptoCurrenciesForDatabase;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CryptoCurrencyRepositoryIntegrationTest {
 
-    private static final List<CryptoCurrency> cryptoCurrencies = getCryptoCurrencies();
+    private static final List<CryptoCurrency> cryptoCurrencies = getCryptoCurrenciesForDatabase();
 
     private List<CryptoCurrency> savedCurrencies;
     @Autowired

@@ -38,6 +38,15 @@ public class CryptoCurrencyTestUtils {
     public static List<CryptoCurrency> getCryptoCurrencies() {
         return List.of(
                 new CryptoCurrency(1, LocalDateTime.of(2022, 3, 1, 0, 0, 0), BTC_SYMBOL, OLDEST_PRICE_VALUE),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 2, 0, 0, 0), BTC_SYMBOL, MAX_PRICE_VALUE),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 30, 23, 59, 59), BTC_SYMBOL, MIN_PRICE_VALUE),
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 31, 23, 59, 59), BTC_SYMBOL, NEWEST_PRICE_VALUE)
+        );
+    }
+
+    public static List<CryptoCurrency> getCryptoCurrenciesForDatabase() {
+        return List.of(
+                new CryptoCurrency(1, LocalDateTime.of(2022, 3, 1, 0, 0, 0), BTC_SYMBOL, OLDEST_PRICE_VALUE),
                 new CryptoCurrency(2, LocalDateTime.of(2022, 3, 2, 0, 0, 0), BTC_SYMBOL, MAX_PRICE_VALUE),
                 new CryptoCurrency(3, LocalDateTime.of(2022, 3, 30, 23, 59, 59), BTC_SYMBOL, MIN_PRICE_VALUE),
                 new CryptoCurrency(4, LocalDateTime.of(2022, 3, 31, 23, 59, 59), BTC_SYMBOL, NEWEST_PRICE_VALUE),
