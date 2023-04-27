@@ -10,15 +10,20 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class is responsible for reading data from a CSV file and returning a list of {@link CryptoCurrencyDto} objects.
+ */
 @Service
 public class CsvFileReaderService implements Readable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CsvFileReaderService.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<CryptoCurrencyDto> read(String dataPath) {
         List<CryptoCurrencyDto> cryptoCurrencyDtos = Collections.emptyList();
-
 
         try {
             cryptoCurrencyDtos = new CsvToBeanBuilder<CryptoCurrencyDto>(

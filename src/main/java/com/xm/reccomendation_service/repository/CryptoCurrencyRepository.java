@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * This repository provides methods to perform CRUD operations on {@link CryptoCurrency} entity.
+ */
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Integer> {
 

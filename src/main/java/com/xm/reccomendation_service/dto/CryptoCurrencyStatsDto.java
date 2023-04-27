@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * A Data Transfer Object class that holds the statistics of a cryptocurrency.
+ */
 @Data
 @AllArgsConstructor
 public class CryptoCurrencyStatsDto {

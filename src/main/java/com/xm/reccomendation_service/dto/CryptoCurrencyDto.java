@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * A data transfer object class representing a cryptocurrency with its timestamp, symbol and price.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

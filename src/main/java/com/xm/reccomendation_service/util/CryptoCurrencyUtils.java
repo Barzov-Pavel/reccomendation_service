@@ -11,7 +11,9 @@ import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
-
+/**
+ * Utility class containing methods for manipulating and processing {@link CryptoCurrency} data.
+ */
 public class CryptoCurrencyUtils {
 
     private static final int LAST_HOUR = 23;

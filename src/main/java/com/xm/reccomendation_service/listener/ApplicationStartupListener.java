@@ -9,9 +9,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * This class is an ApplicationListener that listens for the ApplicationReadyEvent.
+ * When the event is triggered, it reads data from CSV files, saves the data into the database,
+ * and initializes the application by deleting all existing data and saving new data.
+ * The class is responsible for setting up the application with initial data during startup.
+ */
 @Component
 public class ApplicationStartupListener implements ApplicationListener<ApplicationReadyEvent> {
 
+    /**
+     * The list of data paths where CSV files are located.
+     */
     private static final List<String> DATA_PATHS = List.of(
             "prices/BTC_values.csv",
             "prices/DOGE_values.csv",

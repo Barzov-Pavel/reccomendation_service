@@ -1,6 +1,5 @@
 package com.xm.reccomendation_service.service;
 
-
 import com.xm.reccomendation_service.dto.CryptoCurrencyDto;
 import com.xm.reccomendation_service.dto.CryptoCurrencyStatsDto;
 import com.xm.reccomendation_service.dto.NormalizedRangeCryptoCurrencyDto;
@@ -23,6 +22,10 @@ import static com.xm.reccomendation_service.util.CryptoCurrencyUtils.getMinValue
 import static com.xm.reccomendation_service.util.CryptoCurrencyUtils.getNewestValue;
 import static com.xm.reccomendation_service.util.CryptoCurrencyUtils.getOldestValue;
 
+/**
+ * A service class that provides methods for handling cryptocurrency data.
+ * Implements the {@link CryptoCurrency} interface.
+ */
 @Service
 public class CryptoCurrencyService implements CryptoCurrency {
 
@@ -35,6 +38,9 @@ public class CryptoCurrencyService implements CryptoCurrency {
         this.repository = repository;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<NormalizedRangeCryptoCurrencyDto> getCryptoCurrencyWithHighestNormalizedRange(LocalDate date) {
         LocalDateTime startDateTime = date.atStartOfDay();
@@ -49,6 +55,9 @@ public class CryptoCurrencyService implements CryptoCurrency {
         return rangeCryptoCurrencyDtos.stream().max(Comparator.comparing(NormalizedRangeCryptoCurrencyDto::getNormalizedRange));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<NormalizedRangeCryptoCurrencyDto> getCryptoCurrenciesSortedByNormalizedRange() {
         List<String> currencySymbols = repository.findAllSymbols();
@@ -62,6 +71,9 @@ public class CryptoCurrencyService implements CryptoCurrency {
         return rangeCryptoCurrencyDtos;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CryptoCurrencyStatsDto getCryptoCurrencyStats(String cryptoCurrencyName, Integer year, Integer month) {
         LocalDateTime startDateTime = LocalDateTime
@@ -76,6 +88,9 @@ public class CryptoCurrencyService implements CryptoCurrency {
         return new CryptoCurrencyStatsDto(minValue, maxValue, oldestValue, newestValue);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> void saveAllDtos(List<T> dtoObjects) {
         List<com.xm.reccomendation_service.model.CryptoCurrency> cryptoCurrencies = dtoObjects
@@ -85,6 +100,9 @@ public class CryptoCurrencyService implements CryptoCurrency {
         repository.saveAll(cryptoCurrencies);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteAll() {
         repository.deleteAll();

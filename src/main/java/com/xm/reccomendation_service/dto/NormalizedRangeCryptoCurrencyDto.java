@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * Data class representing a normalized range for a specific cryptocurrency.
+ */
 @Data
 @AllArgsConstructor
 public class NormalizedRangeCryptoCurrencyDto {

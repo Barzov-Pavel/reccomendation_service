@@ -21,6 +21,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller class that handles requests related to cryptocurrency management APIs
+ */
 @Tag(name = "Crypto currency controller", description = "Crypto currency management APIs")
 @RestController
 @RequestMapping("/api/v1/crypto-currencies")
