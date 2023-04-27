@@ -140,7 +140,7 @@ class CryptoCurrencyServiceUnitTest {
         List<CryptoCurrencyDto> dtos = getCryptoCurrencyDtos();
         when(repository.saveAll(anyList())).thenReturn(Collections.emptyList());
         // When
-        service.saveAll(dtos);
+        service.saveAllDtos(dtos);
         // Then
         verify(repository, times(1)).saveAll(anyList());
         verifyNoMoreInteractions(repository);

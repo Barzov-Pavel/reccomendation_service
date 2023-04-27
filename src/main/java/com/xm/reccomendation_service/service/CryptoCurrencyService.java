@@ -77,7 +77,7 @@ public class CryptoCurrencyService implements CryptoCurrency {
     }
 
     @Override
-    public <T> void saveAll(List<T> dtoObjects) {
+    public <T> void saveAllDtos(List<T> dtoObjects) {
         List<com.xm.reccomendation_service.model.CryptoCurrency> cryptoCurrencies = dtoObjects
                 .stream()
                 .map(dtoObject -> new com.xm.reccomendation_service.model.CryptoCurrency((CryptoCurrencyDto) dtoObject))

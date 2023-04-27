@@ -34,7 +34,7 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
         cryptoCurrencyService.deleteAll();
         for (String str : DATA_PATHS) {
             List<CryptoCurrencyDto> dtos = reader.read(str);
-            cryptoCurrencyService.saveAll(dtos);
+            cryptoCurrencyService.saveAllDtos(dtos);
         }
     }
 }
